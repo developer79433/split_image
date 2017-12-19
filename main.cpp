@@ -10,9 +10,8 @@ main(int argc, char *argv[])
 {
 	const char *infile_name = "../passport_mrz_detector_cpp/ocrb.png";
 	const char *outfile_names = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<";
-	cv::Mat in = cv::imread(infile_name);
-	cv::Mat work;
-	cv::cvtColor(in, work, CV_BGR2GRAY);
+	cv::Mat in = cv::imread(infile_name, CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat work = in.clone();
 	std::vector<std::vector <cv::Point> > contours;
 	cv::findContours(work, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
 	std::vector<cv::Rect> brs;
